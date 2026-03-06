@@ -61,45 +61,45 @@ This program loads student data from `students.csv` into a vector of `Student*` 
 
 ### Date class
 
-**Date() constructor**
+`Date() constructor`
 - Set month = 0, day = 0, year = 0 as safe defaults
 
-**init(dateStr)**
+`init(dateStr)`
 - Load dateStr into a stringstream
 - Use getline with '/' delimiter to extract sMonth, sDay, sYear as strings
 - Use a converter stringstream to convert each string token to int
 - Store results in month, day, year
 
-**printDate()**
+`printDate()`
 - Output month/day/year in MM/DD/YYYY format
 
 ---
 
 ### Address class
 
-**Address() constructor**
+`Address() constructor`
 - Set all string members to empty strings as safe defaults
 
-**init(street, city, state, zip)**
+`init(street, city, state, zip)`
 - Assign each parameter directly to the matching member variable
 
-**printAddress()**
+`printAddress()`
 - Output all fields on one line: street, city, state zip
 
 ---
 
 ### Student class
 
-**Student() constructor**
+`Student() constructor`
 - Set first = "", last = "", credits = 0 as safe defaults
 - Allocate heap objects: address = new Address(), dateOfBirth = new Date(), expectedGraduation = new Date()
 
-**~Student() destructor**
+`~Student() destructor`
 - delete address
 - delete dateOfBirth
 - delete expectedGraduation
 
-**init(csvLine)**
+`init(csvLine)`
 - Load csvLine into a stringstream
 - Use getline with ',' delimiter to extract tokens in order:
     - first, last, street, city, state, zip, birthStr, gradStr, sCredits
@@ -107,54 +107,54 @@ This program loads student data from `students.csv` into a vector of `Student*` 
 - Call dateOfBirth->init(birthStr) and expectedGraduation->init(gradStr) to set up the Date objects
 - Use a converter stringstream to convert sCredits to int
 
-**printStudent()**
+`printStudent()`
 - Print last, first on first line
 - Call address->printAddress()
 - Print "Born: " and call dateOfBirth->printDate()
 - Print "Grad: " and call expectedGraduation->printDate()
 - Print credits
 
-**getLastFirst()**
+`getLastFirst()`
 - Return last + ", " + first as a formatted string
 
-**getLastName()**
+`getLastName()`
 - Return last
 
-**getFirstName()**
+`getFirstName()`
 - Return first
 
-**getCreditHours()**
+`getCreditHours()`
 - Return credits
 
 ---
 
 ### Main program functions
 
-**loadStudents(vector<Student*>& students)**
+`loadStudents(vector<Student*>& students)`
 - Open students.csv with ifstream
 - While getline(infile, currentLine): create Student* s = new Student(), call s->init(currentLine), push s onto students
 - Close file
 
-**showStudentNames(vector<Student*>& students)**
+`showStudentNames(vector<Student*>& students)`
 - For each Student* in students: print student->getLastFirst()
 
-**printStudents(vector<Student*>& students)**
+`printStudents(vector<Student*>& students)`
 - For each Student* in students: call student->printStudent(), print blank line between students
 
-**findStudent(vector<Student*>& students)**
+`findStudent(vector<Student*>& students)`
 - Prompt user for search string
 - For each Student*: if student->getLastName().find(searchTerm) != std::string::npos, call student->printStudent()
 
-**delStudents(vector<Student*>& students)**
+`delStudents(vector<Student*>& students)`
 - For each Student* in students: delete student
 - Call students.clear()
 
-**menu()**
+`menu()`
 - Print numbered options: 0) quit, 1) print all student names, 2) print all student data, 3) find a student, 4) sort by last name, 5) sort by first name, 6) sort by credit hours (descending)
 - Read user input as string with getline(cin, choice)
 - Return choice
 
-**main()**
+`main()`
 - Create std::vector<Student*> students
 - Call loadStudents(students)
 - Loop: call menu(), if "0" call delStudents(students) and break, else dispatch to showStudentNames, printStudents, or findStudent based on choice
@@ -163,16 +163,16 @@ This program loads student data from `students.csv` into a vector of `Student*` 
 
 ### Blackbelt: Sorting
 
-**sortByLast(a, b)**
+`sortByLast(a, b)`
 - Return a->getLastName() < b->getLastName()
 
-**sortByFirst(a, b)**
+`sortByFirst(a, b)`
 - Return a->getFirstName() < b->getFirstName()
 
-**sortByCreditsDesc(a, b)**
+`sortByCreditsDesc(a, b)`
 - Return a->getCreditHours() > b->getCreditHours() (descending: most credits first)
 
-**Menu options 4, 5, 6**
+`Menu options 4, 5, 6`
 - Call std::sort(students.begin(), students.end(), comparator), then showStudentNames(students)
 
 ---
