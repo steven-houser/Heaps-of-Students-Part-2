@@ -130,22 +130,22 @@ This program loads student data from `students.csv` into a vector of `Student*` 
 
 ### Main program functions
 
-`loadStudents(vector<Student*>& students)`
+`loadStudents(vector&lt;Student*&gt;& students)`
 - Open students.csv with ifstream
 - While getline(infile, currentLine): create Student* s = new Student(), call s->init(currentLine), push s onto students
 - Close file
 
-`showStudentNames(vector<Student*>& students)`
+`showStudentNames(vector&lt;Student*&gt;& students)`
 - For each Student* in students: print student->getLastFirst()
 
-`printStudents(vector<Student*>& students)`
+`printStudents(vector&lt;Student*&gt;& students)`
 - For each Student* in students: call student->printStudent(), print blank line between students
 
-`findStudent(vector<Student*>& students)`
+`findStudent(vector&lt;Student*&gt;& students)`
 - Prompt user for search string
 - For each Student*: if student->getLastName().find(searchTerm) != std::string::npos, call student->printStudent()
 
-`delStudents(vector<Student*>& students)`
+`delStudents(vector&lt;Student*&gt;& students)`
 - For each Student* in students: delete student
 - Call students.clear()
 
@@ -155,7 +155,7 @@ This program loads student data from `students.csv` into a vector of `Student*` 
 - Return choice
 
 `main()`
-- Create std::vector<Student*> students
+- Create std::vector&lt;Student*&gt; students
 - Call loadStudents(students)
 - Loop: call menu(), if "0" call delStudents(students) and break, else dispatch to showStudentNames, printStudents, or findStudent based on choice
 
